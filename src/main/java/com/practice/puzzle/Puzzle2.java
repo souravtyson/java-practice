@@ -3,7 +3,7 @@ package com.practice.puzzle;
 /**
  * @author Sourav Suman - 01-12-2024
  */
-public class Pzzle2 {
+public class Puzzle2 {
     public static void main(String[] args) {
         Integer[] num = {1,0,0,1,0,1,0,1,0,1,3,5,4,8,9};
 
