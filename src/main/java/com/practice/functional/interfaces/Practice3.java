@@ -1,4 +1,4 @@
-package com.practice.functional.IF;
+package com.practice.functional.interfaces;
 
 import java.util.Arrays;
 import java.util.List;

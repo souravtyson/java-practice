@@ -1,4 +1,4 @@
-package com.practice.functional.IF;
+package com.practice.functional.interfaces;
 
 @FunctionalInterface
 interface CalculateSum {
