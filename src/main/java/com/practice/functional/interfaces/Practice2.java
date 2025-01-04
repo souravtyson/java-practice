@@ -1,4 +1,4 @@
-package com.practice.functional.IF;
+package com.practice.functional.interfaces;
 
 public class Practice2 {
     public static void main(String[] args) {

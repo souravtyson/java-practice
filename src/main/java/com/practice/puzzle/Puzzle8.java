@@ -1,76 +1,42 @@
 package com.practice.puzzle;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
-
-/**
- * @author Sourav Suman - 05-01-2025
- */
 /*
-You are given a folder containing multiple text files. Your task is to design and implement a Java program to:
-1. Process these files efficiently.
-2. Dynamically find the top nthand bottom nth most frequent words across all files.
+Write a function to find the majority element in an array. The majority element is the element that appears more
+than n/2 times in the array (where n is the size of the array). Assume that the input array always contains a majority element.
+
+Input: [3, 2, 3]
+Output: 3
+
+Input: [2, 2, 1, 1, 1, 2, 2]
+Output: 2
+
  */
+
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Puzzle8 {
+
     public static void main(String[] args) {
-        System.out.println(getNthOccurenceOfWord(1, true));
-        System.out.println(getNthOccurenceOfWord(2, false));
+        System.out.println(findMajorityElement(new int[]{3, 2, 3}));
+        System.out.println(findMajorityElement(new int[]{2, 2, 1, 1, 1, 2, 2}));
     }
 
-    private static List<String> getNthOccurenceOfWord(int rank, boolean highest) {
-        Path path = Paths.get("E:\\java-practice\\src\\main\\resources\\files");
-        try {
-            List<Path> paths = Files.walk(path)
-                    .filter(Files::isRegularFile)
-                    .collect(Collectors.toList());
-            Map<String, Long> occurrence = new ConcurrentHashMap<>();
-
-            ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-
-            for (Path p : paths) {
-                executorService.execute(() -> {
-                    try {
-                        Files.lines(p)
-                                .flatMap(line -> Arrays.stream(line.split("\\W+")))
-                                .forEach(word -> {
-                                    occurrence.merge(word.toLowerCase(), 1L, (a, b) -> Long.sum(a, b));
-//                                    System.out.println(Thread.currentThread().getName());
-                                });
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                });
+    public static int findMajorityElement(int[] arr) {
+        Map<Integer, Integer> occurrence = new HashMap<>();
+        int element = 0;
+        for (int i : arr) {
+            if (occurrence.containsKey(i)) {
+                occurrence.put(i, occurrence.get(i) + 1);
+            } else {
+                occurrence.put(i, 1);
             }
-
-            executorService.shutdown();
-            Thread.sleep(1000);
-            System.out.println(occurrence);
-
-            Map<Long, List<String>> wordListMap =
-                    occurrence.entrySet().stream().collect(Collectors.groupingBy(Map.Entry::getValue,
-                    Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
-
-            System.out.println(wordListMap);
-
-            ArrayList<Long> frequency = new ArrayList<>(wordListMap.keySet());
-
-            frequency.sort(highest ? Comparator.reverseOrder() : Comparator.naturalOrder());
-            System.out.println(frequency);
-            if(rank < 0 || rank > frequency.size()) {
-                throw new IllegalArgumentException("Rank out of range");
+            if (occurrence.get(i) > (arr.length / 2)) {
+                element = i;
+                break;
             }
-
-            return wordListMap.getOrDefault(frequency.get(rank - 1), Collections.emptyList());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
+        return element;
     }
 }
