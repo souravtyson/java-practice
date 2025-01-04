@@ -21,4 +21,5 @@ public class Puzzle11 {
     private List<String> getUppercase(String[] strings) {
         return Arrays.stream(strings).map(String::toUpperCase).collect(Collectors.toList());
     }
+
 }
