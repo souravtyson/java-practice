@@ -21,7 +21,4 @@ public class Puzzle20 {
     private List<Integer> getSortedFlatList(int[][] arrs) {
         return Arrays.stream(arrs).flatMapToInt(Arrays::stream).boxed().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
     }
-
-
-
 }
