@@ -1,8 +1,6 @@
 package com.practice.sorting;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 /**
  * @author Sourav Suman - 02-12-2024
@@ -12,11 +10,11 @@ public class Sorting {
         Employee[] employees = new Employee[7];
 
         // populate dummy value to employee object
-        employees[0] = new Employee("ram", "kumar", 22);
+        employees[0] = new Employee("ram", "kumar", 24);
         employees[1] = new Employee("shyam", "kumar", 23);
-        employees[2] = new Employee("mohan", "kumar", 24);
+        employees[2] = new Employee("mohan", "kumar", 30);
         employees[3] = new Employee("sohan", "kumar", 25);
-        employees[4] = new Employee("rohan", "kumar", 26);
+        employees[4] = new Employee("rohan", "kumar", 29);
         employees[5] = new Employee("rohini", "kumari", 27);
         employees[6] = new Employee("rohan", "singh", 28);
 

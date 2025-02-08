@@ -1,7 +1,6 @@
 package com.practice.puzzle;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -107,7 +106,7 @@ public class Puzzle31 {
     }
 
     public static Map<Character, Long> getQuestion5() {
-        Set<Character> vowels = Set.of('a', 'e', 'i', 'o', 'u');
+        Set<Character> vowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
 
         List<String> wordsList = Arrays.asList("apple", "orange", "banana");
 
