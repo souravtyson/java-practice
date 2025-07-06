@@ -28,9 +28,13 @@ public class Puzzle29 {
     }
 
     private Character findFirstNonRepeatedCharacter(String str) {
+        LinkedHashMap<Character, Long> collect = str.chars()
+                .mapToObj(x -> (char) x)
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+
         return str.chars()
                 .mapToObj(x -> (char) x)
-                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new ,Collectors.counting()))
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet()
                 .stream()
                 .filter(u -> u.getValue() == 1)
